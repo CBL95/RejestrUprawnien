@@ -1,0 +1,33 @@
+﻿@model IEnumerable<RejestrUprawnien.Models.WidokModel>
+@{
+    ViewBag.Title = "Widok";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>nazwisko</th>
+        <th>imie</th>
+        <th>nazwa</th>
+        <th>id_firma</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PracownikNazwisko</td>
+                <td>@item.PracownikImie</td>
+            </tr>
+        }
+        <tr></tr>
+    </tbody>
+
+</table>
+
+
+
+
+
+

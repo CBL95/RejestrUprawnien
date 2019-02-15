@@ -1,0 +1,67 @@
+﻿@model RejestrUprawnien.Models.Uprawnienie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Uprawnienie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_utworzenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_utworzenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_zatwierdzenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_zatwierdzenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_usunięcia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_usunięcia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poziom_uprawnien.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poziom_uprawnien.nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pracownik.imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pracownik.imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zasob.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zasob.nazwa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

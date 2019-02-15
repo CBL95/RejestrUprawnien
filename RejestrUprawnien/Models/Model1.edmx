@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RejestrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Poziom_uprawnien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_zasob" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_firma" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uprawnienie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pracownik" Type="int" Nullable="false" />
+          <Property Name="id_zasob" Type="int" Nullable="false" />
+          <Property Name="opis" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_poziom" Type="int" />
+          <Property Name="data_utworzenia" Type="datetime" />
+          <Property Name="data_zatwierdzenia" Type="datetime" />
+          <Property Name="data_usunięcia" Type="datetime" />
+          <Property Name="zatwierdzil" Type="varchar" MaxLength="150" />
+          <Property Name="utworzyl" Type="varchar" MaxLength="150" />
+          <Property Name="usunal" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Zasob">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_firma" Type="int" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Poziom_uprawnien_fk0">
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="1" />
+          <End Role="Poziom_uprawnien" Type="Self.Poziom_uprawnien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Poziom_uprawnien">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Pracownik_fk0">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="id_firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Uprawnienie_fk0">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Uprawnienie" Type="Self.Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Uprawnienie_fk1">
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="1" />
+          <End Role="Uprawnienie" Type="Self.Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Uprawnienie_fk2">
+          <End Role="Poziom_uprawnien" Type="Self.Poziom_uprawnien" Multiplicity="0..1" />
+          <End Role="Uprawnienie" Type="Self.Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poziom_uprawnien">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_poziom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zasob_fk0">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zasob">
+              <PropertyRef Name="id_firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RejestrModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poziom_uprawnien" EntityType="Self.Poziom_uprawnien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uprawnienie" EntityType="Self.Uprawnienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zasob" EntityType="Self.Zasob" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Poziom_uprawnien_fk0" Association="Self.Poziom_uprawnien_fk0">
+            <End Role="Zasob" EntitySet="Zasob" />
+            <End Role="Poziom_uprawnien" EntitySet="Poziom_uprawnien" />
+          </AssociationSet>
+          <AssociationSet Name="Pracownik_fk0" Association="Self.Pracownik_fk0">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="Uprawnienie_fk0" Association="Self.Uprawnienie_fk0">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienie" />
+          </AssociationSet>
+          <AssociationSet Name="Uprawnienie_fk1" Association="Self.Uprawnienie_fk1">
+            <End Role="Zasob" EntitySet="Zasob" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienie" />
+          </AssociationSet>
+          <AssociationSet Name="Uprawnienie_fk2" Association="Self.Uprawnienie_fk2">
+            <End Role="Poziom_uprawnien" EntitySet="Poziom_uprawnien" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienie" />
+          </AssociationSet>
+          <AssociationSet Name="Zasob_fk0" Association="Self.Zasob_fk0">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Zasob" EntitySet="Zasob" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RejestrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pracowniks" Relationship="Self.Pracownik_fk0" FromRole="Firma" ToRole="Pracownik" />
+          <NavigationProperty Name="Zasobs" Relationship="Self.Zasob_fk0" FromRole="Firma" ToRole="Zasob" />
+        </EntityType>
+        <EntityType Name="Poziom_uprawnien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_zasob" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zasob" Relationship="Self.Poziom_uprawnien_fk0" FromRole="Poziom_uprawnien" ToRole="Zasob" />
+          <NavigationProperty Name="Uprawnienies" Relationship="RejestrModel.Uprawnienie_fk2" FromRole="Poziom_uprawnien" ToRole="Uprawnienie" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_firma" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Firma" Relationship="Self.Pracownik_fk0" FromRole="Pracownik" ToRole="Firma" />
+          <NavigationProperty Name="Uprawnienies" Relationship="RejestrModel.Uprawnienie_fk0" FromRole="Pracownik" ToRole="Uprawnienie" />
+        </EntityType>
+        <EntityType Name="Zasob">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_firma" Type="Int32" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Firma" Relationship="Self.Zasob_fk0" FromRole="Zasob" ToRole="Firma" />
+          <NavigationProperty Name="Poziom_uprawnien" Relationship="Self.Poziom_uprawnien_fk0" FromRole="Zasob" ToRole="Poziom_uprawnien" />
+          <NavigationProperty Name="Uprawnienies" Relationship="RejestrModel.Uprawnienie_fk1" FromRole="Zasob" ToRole="Uprawnienie" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Pracownik_fk0">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="id_firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zasob_fk0">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zasob">
+              <PropertyRef Name="id_firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Poziom_uprawnien_fk0">
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="1" />
+          <End Role="Poziom_uprawnien" Type="Self.Poziom_uprawnien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Poziom_uprawnien">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RejestrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Firmas" EntityType="Self.Firma" />
+          <EntitySet Name="Poziom_uprawnien" EntityType="Self.Poziom_uprawnien" />
+          <EntitySet Name="Pracowniks" EntityType="Self.Pracownik" />
+          <EntitySet Name="Zasobs" EntityType="Self.Zasob" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="Pracownik_fk0" Association="Self.Pracownik_fk0">
+            <End Role="Firma" EntitySet="Firmas" />
+            <End Role="Pracownik" EntitySet="Pracowniks" />
+          </AssociationSet>
+          <AssociationSet Name="Zasob_fk0" Association="Self.Zasob_fk0">
+            <End Role="Firma" EntitySet="Firmas" />
+            <End Role="Zasob" EntitySet="Zasobs" />
+          </AssociationSet>
+          <AssociationSet Name="Poziom_uprawnien_fk0" Association="Self.Poziom_uprawnien_fk0">
+            <End Role="Zasob" EntitySet="Zasobs" />
+            <End Role="Poziom_uprawnien" EntitySet="Poziom_uprawnien" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Uprawnienies" EntityType="RejestrModel.Uprawnienie" />
+          <AssociationSet Name="Uprawnienie_fk2" Association="RejestrModel.Uprawnienie_fk2">
+            <End Role="Poziom_uprawnien" EntitySet="Poziom_uprawnien" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienies" />
+          </AssociationSet>
+          <AssociationSet Name="Uprawnienie_fk0" Association="RejestrModel.Uprawnienie_fk0">
+            <End Role="Pracownik" EntitySet="Pracowniks" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienies" />
+          </AssociationSet>
+          <AssociationSet Name="Uprawnienie_fk1" Association="RejestrModel.Uprawnienie_fk1">
+            <End Role="Zasob" EntitySet="Zasobs" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienies" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Uprawnienie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pracownik" Type="Int32" Nullable="false" />
+          <Property Name="id_zasob" Type="Int32" Nullable="false" />
+          <Property Name="opis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_poziom" Type="Int32" />
+          <Property Name="data_utworzenia" Type="DateTime" Precision="3" />
+          <Property Name="data_zatwierdzenia" Type="DateTime" Precision="3" />
+          <Property Name="data_usunięcia" Type="DateTime" Precision="3" />
+          <Property Name="zatwierdzil" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="utworzyl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usunal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Poziom_uprawnien" Relationship="RejestrModel.Uprawnienie_fk2" FromRole="Uprawnienie" ToRole="Poziom_uprawnien" />
+          <NavigationProperty Name="Pracownik" Relationship="RejestrModel.Uprawnienie_fk0" FromRole="Uprawnienie" ToRole="Pracownik" />
+          <NavigationProperty Name="Zasob" Relationship="RejestrModel.Uprawnienie_fk1" FromRole="Uprawnienie" ToRole="Zasob" />
+        </EntityType>
+        <Association Name="Uprawnienie_fk2">
+          <End Type="RejestrModel.Poziom_uprawnien" Role="Poziom_uprawnien" Multiplicity="0..1" />
+          <End Type="RejestrModel.Uprawnienie" Role="Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poziom_uprawnien">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_poziom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Uprawnienie_fk0">
+          <End Type="RejestrModel.Pracownik" Role="Pracownik" Multiplicity="1" />
+          <End Type="RejestrModel.Uprawnienie" Role="Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Uprawnienie_fk1">
+          <End Type="RejestrModel.Zasob" Role="Zasob" Multiplicity="1" />
+          <End Type="RejestrModel.Uprawnienie" Role="Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RejestrModelStoreContainer" CdmEntityContainer="RejestrEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="RejestrModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="RejestrModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="RejestrModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="RejestrModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="RejestrModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firmas">
+            <EntityTypeMapping TypeName="RejestrModel.Firma">
+              <MappingFragment StoreEntitySet="Firma">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poziom_uprawnien">
+            <EntityTypeMapping TypeName="RejestrModel.Poziom_uprawnien">
+              <MappingFragment StoreEntitySet="Poziom_uprawnien">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_zasob" ColumnName="id_zasob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracowniks">
+            <EntityTypeMapping TypeName="RejestrModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="id_firma" ColumnName="id_firma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zasobs">
+            <EntityTypeMapping TypeName="RejestrModel.Zasob">
+              <MappingFragment StoreEntitySet="Zasob">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_firma" ColumnName="id_firma" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="RejestrModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Uprawnienies">
+            <EntityTypeMapping TypeName="RejestrModel.Uprawnienie">
+              <MappingFragment StoreEntitySet="Uprawnienie">
+                <ScalarProperty Name="usunal" ColumnName="usunal" />
+                <ScalarProperty Name="utworzyl" ColumnName="utworzyl" />
+                <ScalarProperty Name="zatwierdzil" ColumnName="zatwierdzil" />
+                <ScalarProperty Name="data_usunięcia" ColumnName="data_usunięcia" />
+                <ScalarProperty Name="data_zatwierdzenia" ColumnName="data_zatwierdzenia" />
+                <ScalarProperty Name="data_utworzenia" ColumnName="data_utworzenia" />
+                <ScalarProperty Name="id_poziom" ColumnName="id_poziom" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="id_zasob" ColumnName="id_zasob" />
+                <ScalarProperty Name="id_pracownik" ColumnName="id_pracownik" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

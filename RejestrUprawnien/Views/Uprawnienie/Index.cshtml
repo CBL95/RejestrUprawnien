@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<RejestrUprawnien.Models.Uprawnienie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            pracownik
+        </th>
+        <th>
+            zasób
+        </th>
+        <th>
+            opis
+        </th>
+        <th>
+            poziom
+        </th>
+        <th>
+            utworzono
+        </th>
+        <th>
+            utworzył
+        </th>
+        <th>
+            zatwierdzono
+        </th>
+        <th>
+            zatwierdził
+        </th>
+        <th>
+            usunięto
+        </th>
+
+
+        <th>
+            usunął
+        </th>
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pracownik.imie)
+            @Html.DisplayFor(modelItem => item.Pracownik.nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zasob.nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Poziom_uprawnien.nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_utworzenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.utworzyl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_zatwierdzenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zatwierdzil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_usunięcia)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.usunal)
+        </td>
+
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+    }
+
+</table>
