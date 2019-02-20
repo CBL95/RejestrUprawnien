@@ -1,16 +1,8 @@
-﻿@model IEnumerable<RejestrUprawnien.Models.WidokModel>
-@{
-    ViewBag.Title = "Partial2";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<h2>Partial2</h2>
-
-
-Lista uprawnień:
-<br />
-@foreach (var item in Model)
-{
-    <br />
-    @item.UprawnienieNazwa
-
-}
+﻿<div>
+    <h3 class="alert-success">Lista Uprawnień:</h3>
+    @foreach (var item in Model)
+    {
+        <br />
+        @item.UprawnienieNazwa
+    }
+</div>

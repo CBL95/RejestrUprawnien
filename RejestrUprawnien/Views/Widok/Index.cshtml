@@ -3,29 +3,14 @@
     ViewBag.Title = "Widok";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-<table>
-    <tr>
-
-        <th>nazwisko</th>
-        <th>imie</th>
-
-    </tr>
-    <tbody>
+<h3 class="alert-success">Lista Pracowników:</h3>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.PracownikNazwisko</td>
-                <td>@item.PracownikImie</td>
-            </tr>
+            <br />
+                <td>@item.PracownikNazwa</td>
         }
-        <tr></tr>
-    </tbody>
-
-
-</table>
 
 @*@Html.Partial("Partial1")*@
 @Html.Action("Partial1", "Widok")
 @Html.Action("Partial2", "Widok")
+@Html.Action("Partial3", "Widok")

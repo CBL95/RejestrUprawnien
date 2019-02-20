@@ -23,8 +23,8 @@ namespace RejestrUprawnien
 
 
             List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
-            { PracownikImie = x.imie,
-                PracownikNazwisko = x.nazwisko,
+            {
+                PracownikNazwa = x.nazwisko + " " + x.imie
                 
             }).ToList();
 
@@ -68,6 +68,24 @@ namespace RejestrUprawnien
 
             return PartialView("Partial2", uprawnienieWidokLista);
         }
+
+        public ActionResult Partial3()
+        {
+            RejestrEntities db = new RejestrEntities();
+
+            List<Zasob> listauprawnien = db.Zasobs.ToList();
+            WidokModel widok = new WidokModel();
+
+
+            List<WidokModel> zasobWidokLista = listauprawnien.Select(x => new WidokModel
+            {
+                ZasobNazwa = x.nazwa
+
+            }).ToList();
+
+            return PartialView("Partial3", zasobWidokLista);
+        }
+
 
 
     }

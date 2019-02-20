@@ -10,9 +10,9 @@ namespace RejestrUprawnien.Models
     public class WidokModel
     {
         public string FirmaNazwa { get; set; }
-        public string PracownikImie { get; set; }
-        public string PracownikNazwisko { get; set; }
+        public string PracownikNazwa { get; set; }
         public string UprawnienieNazwa { get; set; }
+        public string ZasobNazwa { get; set; }
     }
 
 
