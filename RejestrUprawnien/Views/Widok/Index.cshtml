@@ -7,11 +7,10 @@
 
 <table>
     <tr>
-        <th>Id</th>
+
         <th>nazwisko</th>
         <th>imie</th>
-        <th>nazwa</th>
-        <th>id_firma</th>
+
     </tr>
     <tbody>
         @foreach (var item in Model)
@@ -24,10 +23,9 @@
         <tr></tr>
     </tbody>
 
+
 </table>
 
-
-
-
-
-
+@*@Html.Partial("Partial1")*@
+@Html.Action("Partial1", "Widok")
+@Html.Action("Partial2", "Widok")

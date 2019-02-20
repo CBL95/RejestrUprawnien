@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RejestrUprawnien.Models.WidokModel>
+@{
+    ViewBag.Title = "Partial1";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Partial1</h2>
+
+
+Lista Firm:
+<br />
+@foreach (var item in Model)
+{
+<br />
+@item.FirmaNazwa
+
+}

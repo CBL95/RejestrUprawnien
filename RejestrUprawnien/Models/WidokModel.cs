@@ -12,5 +12,10 @@ namespace RejestrUprawnien.Models
         public string FirmaNazwa { get; set; }
         public string PracownikImie { get; set; }
         public string PracownikNazwisko { get; set; }
+        public string UprawnienieNazwa { get; set; }
     }
+
+
+
+
 }

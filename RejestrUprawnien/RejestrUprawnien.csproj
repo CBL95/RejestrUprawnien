@@ -423,6 +423,8 @@
     <Content Include="Views\Uprawnienie\Edit.cshtml" />
     <Content Include="Views\Uprawnienie\Index.cshtml" />
     <Content Include="Views\Widok\Index.cshtml" />
+    <Content Include="Views\Widok\Partial1.cshtml" />
+    <Content Include="Views\Widok\Partial2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,8 +15,9 @@ namespace RejestrUprawnien
         public ActionResult Index()
         {
             RejestrEntities db = new RejestrEntities();
+
             List<Pracownik> listapracownikow = db.Pracowniks.ToList();
-            List<Firma> listafirm = db.Firmas.ToList();
+
             WidokModel widok = new WidokModel();
 
 
@@ -24,15 +25,50 @@ namespace RejestrUprawnien
             List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
             { PracownikImie = x.imie,
                 PracownikNazwisko = x.nazwisko,
+                
             }).ToList();
 
-            //List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
-            //{ FirmaNazwa = x.nazwa,
-            //    FirmaId = x.id }).ToList();
 
             return View(pracownikWidokLista);
         }
 
-           
+
+        public ActionResult Partial1()
+        {
+            RejestrEntities db = new RejestrEntities();
+         
+            List<Firma> listafirm = db.Firmas.ToList();
+            WidokModel widok = new WidokModel();
+
+
+            List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
+            {
+                FirmaNazwa = x.nazwa
+
+            }).ToList();
+
+            return PartialView("Partial1",firmaWidokLista);
+        }
+
+
+
+        public ActionResult Partial2()
+        {
+            RejestrEntities db = new RejestrEntities();
+
+            List<Poziom_uprawnien> listauprawnien = db.Poziom_uprawnien.ToList();
+            WidokModel widok = new WidokModel();
+
+
+            List<WidokModel> uprawnienieWidokLista = listauprawnien.Select(x => new WidokModel
+            {
+                UprawnienieNazwa = x.nazwa
+
+            }).ToList();
+
+            return PartialView("Partial2", uprawnienieWidokLista);
+        }
+
+
     }
 }
