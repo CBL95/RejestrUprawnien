@@ -43,6 +43,7 @@ namespace RejestrUprawnien
 
             List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
             {
+                FirmaID = x.id,
                 FirmaNazwa = x.nazwa
 
             }).ToList();
@@ -84,6 +85,11 @@ namespace RejestrUprawnien
             }).ToList();
 
             return PartialView("Partial3", zasobWidokLista);
+        }
+
+        public void Wypisz(int id)
+        {
+            
         }
 
 

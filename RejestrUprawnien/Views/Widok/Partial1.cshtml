@@ -1,10 +1,15 @@
-﻿<div>
-    <h3 class="alert-success">Lista Firm:</h3>
-    @foreach (var item in Model)
-    {
-        <br />
-        <a href="#">
-            @item.FirmaNazwa
-        </a>
-    }
-</div>
+﻿
+<h3 class="alert-success">Lista Firm:</h3>
+@foreach (var item in Model)
+{
+    <br />
+    @*@Html.ActionLink("Test Link", "SomeAction", "SomeController",
+        null, new {id = "someID" })*@
+
+    @Html.ActionLink((string)item.FirmaNazwa, "Wypisz", "Widok",  new { id = item.FirmaID },null)
+
+
+
+
+}
+
