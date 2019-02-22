@@ -51,8 +51,6 @@ namespace RejestrUprawnien
             return PartialView("Partial1",firmaWidokLista);
         }
 
-
-
         public ActionResult Partial2()
         {
             RejestrEntities db = new RejestrEntities();
@@ -87,9 +85,30 @@ namespace RejestrUprawnien
             return PartialView("Partial3", zasobWidokLista);
         }
 
-        public void Wypisz(int id)
+        public ActionResult _PartialView(int id)
         {
-            
+            RejestrEntities db = new RejestrEntities();
+
+
+
+            var listapracownikow = (from t in db.Pracowniks
+                                orderby t.nazwisko descending
+                                    where t.id_firma.Equals(id)
+                                    select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+
+
+            List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
+            {
+                PracownikNazwa = x.nazwisko + " " + x.imie
+
+            }).ToList();
+
+
+            return PartialView("_PartialView", pracownikWidokLista);
+
         }
 
 
