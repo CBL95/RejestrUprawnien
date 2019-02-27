@@ -24,7 +24,8 @@ namespace RejestrUprawnien
 
             List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
             {
-                PracownikNazwa = x.nazwisko + " " + x.imie
+                PracownikNazwa = x.nazwisko + " " + x.imie,
+                PracownikID = x.id
                 
             }).ToList();
 
@@ -32,8 +33,7 @@ namespace RejestrUprawnien
             return View(pracownikWidokLista);
         }
 
-
-        public ActionResult Partial1()
+        public ActionResult _PartFirm()
         {
             RejestrEntities db = new RejestrEntities();
          
@@ -48,48 +48,15 @@ namespace RejestrUprawnien
 
             }).ToList();
 
-            return PartialView("Partial1",firmaWidokLista);
+            return PartialView("_PartFirm",firmaWidokLista);
         }
 
-        public ActionResult Partial2()
+        public ActionResult _PartPracFirm(int id, string nazwa)
         {
+
+            ViewBag.nazwa = nazwa;
+
             RejestrEntities db = new RejestrEntities();
-
-            List<Poziom_uprawnien> listauprawnien = db.Poziom_uprawnien.ToList();
-            WidokModel widok = new WidokModel();
-
-
-            List<WidokModel> uprawnienieWidokLista = listauprawnien.Select(x => new WidokModel
-            {
-                UprawnienieNazwa = x.nazwa
-
-            }).ToList();
-
-            return PartialView("Partial2", uprawnienieWidokLista);
-        }
-
-        public ActionResult Partial3()
-        {
-            RejestrEntities db = new RejestrEntities();
-
-            List<Zasob> listauprawnien = db.Zasobs.ToList();
-            WidokModel widok = new WidokModel();
-
-
-            List<WidokModel> zasobWidokLista = listauprawnien.Select(x => new WidokModel
-            {
-                ZasobNazwa = x.nazwa
-
-            }).ToList();
-
-            return PartialView("Partial3", zasobWidokLista);
-        }
-
-        public ActionResult _PartialView(int id)
-        {
-            RejestrEntities db = new RejestrEntities();
-
-
 
             var listapracownikow = (from t in db.Pracowniks
                                 orderby t.nazwisko descending
@@ -98,16 +65,41 @@ namespace RejestrUprawnien
 
             WidokModel widok = new WidokModel();
 
-
-
             List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
             {
-                PracownikNazwa = x.nazwisko + " " + x.imie
+                PracownikNazwa = x.nazwisko + " " + x.imie,
+                PracownikID = x.id
+            }).ToList();
 
+           
+
+            return PartialView("_PartPracFirm", pracownikWidokLista);
+
+        }
+
+        public ActionResult _PartPracFirmZas(int id, string nazwa)
+        {
+
+            ViewBag.nazwa = nazwa;
+
+            RejestrEntities db = new RejestrEntities();
+
+            var listaZasobow = (from t in db.Uprawnienies
+                                    where t.id_pracownik.Equals(id)
+                                    select t).ToList();
+
+
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> zasobWidokLista = listaZasobow.Select(x => new WidokModel
+            {
+                UprawnienieNazwa = x.Zasob.nazwa+ "(" + x.Poziom_uprawnien.nazwa +")"
             }).ToList();
 
 
-            return PartialView("_PartialView", pracownikWidokLista);
+
+            return PartialView("_PartPracFirmZas", zasobWidokLista);
 
         }
 

@@ -15,7 +15,7 @@
     @*@Html.ActionLink("Test Link", "SomeAction", "SomeController",
         null, new {id = "someID" })*@
 
-    @Html.ActionLink((string)item.FirmaNazwa, "_PartialView", "Widok",  new { id = item.FirmaID},null)
+    @Html.ActionLink((string)item.FirmaNazwa, "_PartPracFirm", "Widok",  new { id = item.FirmaID, nazwa=item.FirmaNazwa},null)
 
 
     

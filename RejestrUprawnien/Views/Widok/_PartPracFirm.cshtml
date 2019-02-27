@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Pracownicy firmy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 class="alert-success">Lista pracowników firmy @ViewBag.nazwa:</h3>
+@foreach (var item in Model)
+{
+    <br />
+    @Html.ActionLink((string)item.PracownikNazwa, "_PartPracFirmZas", "Widok", new { id = item.PracownikID, nazwa = item.PracownikNazwa }, null)
+
+
+
+
+}
+

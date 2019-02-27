@@ -423,10 +423,11 @@
     <Content Include="Views\Uprawnienie\Edit.cshtml" />
     <Content Include="Views\Uprawnienie\Index.cshtml" />
     <Content Include="Views\Widok\Index.cshtml" />
-    <Content Include="Views\Widok\Partial1.cshtml" />
+    <Content Include="Views\Widok\_PartFirm.cshtml" />
     <Content Include="Views\Widok\Partial2.cshtml" />
     <Content Include="Views\Widok\Partial3.cshtml" />
-    <Content Include="Views\Widok\_PartialView.cshtml" />
+    <Content Include="Views\Widok\_PartPracFirm.cshtml" />
+    <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
