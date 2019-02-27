@@ -103,7 +103,30 @@ namespace RejestrUprawnien
 
         }
 
+        public ActionResult _PartZasFirm(int id, string nazwa)
+        {
 
+            ViewBag.nazwa = nazwa;
+
+            RejestrEntities db = new RejestrEntities();
+
+            var listapracownikow = (from t in db.Zasobs 
+                                    where t.id_firma.Equals(id)
+                                    select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> zasobWidokLista = listapracownikow.Select(x => new WidokModel
+            {
+                ZasobNazwa = x.nazwa,
+                ZasobID = x.id
+            }).ToList();
+
+
+
+            return PartialView("_PartZasFirm", zasobWidokLista);
+
+        }
 
     }
 }

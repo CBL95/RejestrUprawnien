@@ -1,0 +1,8 @@
+﻿<h3 class="alert-success">Lista Zasobów firmy @ViewBag.nazwa:</h3>
+@foreach (var item in Model)
+{
+    <br />
+    @Html.ActionLink((string)item.ZasobNazwa, "_PartPracFirm", "Widok", new { id = item.ZasobID, nazwa = item.FirmaNazwa }, null)
+}
+
+

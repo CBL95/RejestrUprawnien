@@ -15,7 +15,7 @@ namespace RejestrUprawnien.Models
         public int PracownikID { get; set; }
         public string UprawnienieNazwa { get; set; }
         public string ZasobNazwa { get; set; }
-
+        public int ZasobID { get; set; }
     }
 
 

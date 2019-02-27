@@ -428,6 +428,7 @@
     <Content Include="Views\Widok\Partial3.cshtml" />
     <Content Include="Views\Widok\_PartPracFirm.cshtml" />
     <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
+    <Content Include="Views\Widok\_PartZasFirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
