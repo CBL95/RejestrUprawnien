@@ -2,7 +2,7 @@
 @foreach (var item in Model)
 {
     <br />
-    @Html.ActionLink((string)item.ZasobNazwa, "_PartPracFirm", "Widok", new { id = item.ZasobID, nazwa = item.FirmaNazwa }, null)
+    @Html.ActionLink((string)item.ZasobNazwa, "_PartZasPrac", "Widok", new { id = item.ZasobID, nazwa = item.ZasobNazwa }, null)
 }
 
 

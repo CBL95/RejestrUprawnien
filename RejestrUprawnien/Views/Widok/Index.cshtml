@@ -1,14 +1,15 @@
-﻿@model IEnumerable<RejestrUprawnien.Models.WidokModel>
+﻿@Styles.Render("~/Content/Site.css")
+@model IEnumerable<RejestrUprawnien.Models.WidokModel>
 @{
     ViewBag.Title = "Widok";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*<h3 class="alert-success">Lista Pracowników:</h3>
-        @foreach (var item in Model)
-        {
-            <br />
-                <td>@item.PracownikNazwa</td>
-        }*@
+    @foreach (var item in Model)
+    {
+        <br />
+            <td>@item.PracownikNazwa</td>
+    }*@
 
 @*@Html.Partial("Partial1")*@
 @Html.Action("_PartFirm", "Widok")

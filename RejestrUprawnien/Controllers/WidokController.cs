@@ -128,5 +128,29 @@ namespace RejestrUprawnien
 
         }
 
+        public ActionResult _PartZasPrac(int id, string nazwa)
+        {
+
+            ViewBag.nazwa = nazwa;
+
+            RejestrEntities db = new RejestrEntities();
+
+            var listaUpPrac = (from t in db.Uprawnienies
+                                    where t.id_zasob.Equals(id)
+                                    select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> zasobWidokLista = listaUpPrac.Select(x => new WidokModel
+            {
+                PracownikNazwa = x.Pracownik.nazwisko + " " + x.Pracownik.imie + "(" + x.Poziom_uprawnien.nazwa + ")"
+
+            }).ToList();
+
+
+
+            return PartialView("_PartZasPrac", zasobWidokLista);
+
+        }
     }
 }

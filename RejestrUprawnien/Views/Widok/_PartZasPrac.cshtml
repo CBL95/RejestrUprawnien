@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Zasoby";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 class="alert-success">Osoby uprawnione do „@ViewBag.nazwa”</h3>
+@foreach (var item in Model)
+{
+    <br />
+    <td>@item.PracownikNazwa</td>
+}
+
+

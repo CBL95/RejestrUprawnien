@@ -52,7 +52,7 @@ namespace RejestrUprawnien.Controllers
             {
                 db.Firmas.Add(firma);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Widok");
             }
 
             return View(firma);

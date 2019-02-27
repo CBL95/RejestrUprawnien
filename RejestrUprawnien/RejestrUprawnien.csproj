@@ -241,6 +241,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\images.png" />
+    <Content Include="Images\image2s.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -429,6 +431,7 @@
     <Content Include="Views\Widok\_PartPracFirm.cshtml" />
     <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
     <Content Include="Views\Widok\_PartZasFirm.cshtml" />
+    <Content Include="Views\Widok\_PartZasPrac.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
