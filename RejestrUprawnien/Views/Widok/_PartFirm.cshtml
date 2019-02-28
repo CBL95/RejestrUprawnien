@@ -1,13 +1,13 @@
 ﻿
 <h3 class="alert-success">Lista Firm:</h3>
+@{int i = 1;}
 @foreach (var item in Model)
 {
     <br />
-    @Html.ActionLink((string)item.FirmaNazwa, "_PartPracFirm", "Widok", new { id = item.FirmaID, nazwa = item.FirmaNazwa }, null)
+    <span>@i. </span>@Html.ActionLink((string)item.FirmaNazwa, "_PartPracFirm", "Widok", new { id = item.FirmaID, nazwa = item.FirmaNazwa }, null)
+    i++;
 }
-<br />
-<br />
-<br />
+<br /><br /><br />
 
-
-<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Firma")'" />
+@Html.ActionLink("Dodaj firmę", "Create", "Firma", null, new { @class = "myButton" })
+@*<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Firma")'" />*@

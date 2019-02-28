@@ -426,8 +426,6 @@
     <Content Include="Views\Uprawnienie\Index.cshtml" />
     <Content Include="Views\Widok\Index.cshtml" />
     <Content Include="Views\Widok\_PartFirm.cshtml" />
-    <Content Include="Views\Widok\Partial2.cshtml" />
-    <Content Include="Views\Widok\Partial3.cshtml" />
     <Content Include="Views\Widok\_PartPracFirm.cshtml" />
     <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
     <Content Include="Views\Widok\_PartZasFirm.cshtml" />

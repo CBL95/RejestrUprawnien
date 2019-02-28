@@ -38,6 +38,8 @@ namespace RejestrUprawnien.Controllers
         // GET: Firma/Create
         public ActionResult Create()
         {
+            ViewBag.testcreate = "testCreate";
+
             return View();
         }
 

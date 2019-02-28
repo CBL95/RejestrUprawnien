@@ -1,7 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Zasoby";
+    ViewBag.Title = "Uprawnienie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/Site.css")
 <h3 class="alert-success">Osoby uprawnione do „@ViewBag.nazwa”</h3>
 @foreach (var item in Model)
 {
@@ -10,3 +11,5 @@
 }
 
 
+<br /><br /><br />
+<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Uprawnienie")'" />
