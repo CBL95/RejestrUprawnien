@@ -5,9 +5,8 @@
 }
 @foreach (var item in Model)
 {
-    <h1>@item.FirmaNazwa</h1>
-    @Html.Action("_ZasobyFirmy", "Widok", new { id = item.FirmaID })
-
+    <h4>@item.ZasobNazwa</h4>
+    @Html.Action("_UprawnieniaZasobuFirmy", "Widok", new { id = item.ZasobID })
 }
 
 

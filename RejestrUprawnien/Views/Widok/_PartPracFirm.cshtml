@@ -1,33 +1,11 @@
-﻿@{
-    ViewBag.Title = "Pracownicy firmy";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@Styles.Render("~/Content/Site.css")
-<h3 class="alert-success">Lista pracowników firmy @ViewBag.nazwa:</h3>
+﻿
 @foreach (var item in Model)
 {
-    <br />
-    @Html.ActionLink((string)item.PracownikNazwa, "_PartPracFirmZas", "Widok", new { id = item.PracownikID, nazwa = item.PracownikNazwa }, null)
 
-
+    <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@item.PracownikNazwa</h4>
+    <div id="content">
+        @Html.Action("_PartPracFirmZas", "Widok", new { id = item.PracownikID })
+    </div>
 }
-<br /><br /><br />
-<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Pracownik")'" />
 
-@Html.Action("_PartZasFirm", "Widok")
-
-
-
-<input type="button" class="myButton" id="baton" value="poka mi to" onclick="def()" />
-@*@Html.ActionLink("chowaj", null, null, null, new { @onclick="def()", @class = "myButton" })*@
-<input class="form-control"
-       id="boks"
-       name="myTextBox"
-       type="text"
-       value="This is value" />
-
-<script>
-    function def() {
-        $("#boks").hide();
-    }
-</script>
+ 

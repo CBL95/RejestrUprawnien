@@ -430,6 +430,8 @@
     <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
     <Content Include="Views\Widok\_PartZasFirm.cshtml" />
     <Content Include="Views\Widok\_PartZasPrac.cshtml" />
+    <Content Include="Views\Widok\_ZasobyFirmy.cshtml" />
+    <Content Include="Views\Widok\_UprawnieniaZasobuFirmy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

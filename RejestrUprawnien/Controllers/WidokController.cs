@@ -14,23 +14,22 @@ namespace RejestrUprawnien
     {
         public ActionResult Index()
         {
+
             RejestrEntities db = new RejestrEntities();
 
-            List<Pracownik> listapracownikow = db.Pracowniks.ToList();
-
+            List<Firma> listafirm = db.Firmas.ToList();
             WidokModel widok = new WidokModel();
 
 
-
-            List<WidokModel> pracownikWidokLista = listapracownikow.Select(x => new WidokModel
+            List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
             {
-                PracownikNazwa = x.nazwisko + " " + x.imie,
-                PracownikID = x.id
-                
+                FirmaID = x.id,
+                FirmaNazwa = x.nazwa
+
             }).ToList();
 
 
-            return View(pracownikWidokLista);
+            return View(firmaWidokLista);
         }
 
         public ActionResult _PartFirm()
@@ -51,10 +50,9 @@ namespace RejestrUprawnien
             return PartialView("_PartFirm",firmaWidokLista);
         }
 
-        public ActionResult _PartPracFirm(int id, string nazwa)
+        public ActionResult _PartPracFirm(int id)
         {
 
-            ViewBag.nazwa = nazwa;
 
             RejestrEntities db = new RejestrEntities();
 
@@ -94,7 +92,7 @@ namespace RejestrUprawnien
 
             List<WidokModel> zasobWidokLista = listaZasobow.Select(x => new WidokModel
             {
-                UprawnienieNazwa = x.Zasob.nazwa+ "(" + x.Poziom_uprawnien.nazwa +")"
+                UprawnienieNazwa = x.Zasob.nazwa+ " (" + x.Poziom_uprawnien.nazwa +")"
             }).ToList();
 
 
@@ -103,29 +101,19 @@ namespace RejestrUprawnien
 
         }
 
-        public ActionResult _PartZasFirm(int id, string nazwa)
+        public ActionResult _PartZasFirm()
         {
-
-            ViewBag.nazwa = nazwa;
-
             RejestrEntities db = new RejestrEntities();
-
-            var listapracownikow = (from t in db.Zasobs 
-                                    where t.id_firma.Equals(id)
-                                    select t).ToList();
-
+            List<Firma> listafirm = db.Firmas.ToList();
             WidokModel widok = new WidokModel();
-
-            List<WidokModel> zasobWidokLista = listapracownikow.Select(x => new WidokModel
+            List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
             {
-                ZasobNazwa = x.nazwa,
-                ZasobID = x.id
+                FirmaID = x.id,
+                FirmaNazwa = x.nazwa
+
             }).ToList();
 
-
-
-            return PartialView("_PartZasFirm", zasobWidokLista);
-
+            return PartialView("_PartZasFirm", firmaWidokLista);
         }
 
         public ActionResult _PartZasPrac(int id, string nazwa)
@@ -152,5 +140,53 @@ namespace RejestrUprawnien
             return PartialView("_PartZasPrac", zasobWidokLista);
 
         }
+
+        public ActionResult _ZasobyFirmy(int id)
+        {
+            
+            RejestrEntities db = new RejestrEntities();
+
+            var listaZasobowFirmy = (from t in db.Zasobs
+                               where t.id_firma.Equals(id)
+                               select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> zasobWidokLista = listaZasobowFirmy.Select(x => new WidokModel
+            {
+                ZasobNazwa = x.nazwa,
+                ZasobID = x.id
+
+            }).ToList();
+
+
+
+            return PartialView("_ZasobyFirmy", zasobWidokLista);
+
+        }
+
+        public ActionResult _UprawnieniaZasobuFirmy(int id)
+        {
+
+            RejestrEntities db = new RejestrEntities();
+
+            var listaUprawnienFirmy = (from t in db.Poziom_uprawnien
+                                     where t.id_zasob.Equals(id)
+                                     select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> uprawnienieWidokLista = listaUprawnienFirmy.Select(x => new WidokModel
+            {
+                UprawnienieNazwa = x.nazwa
+
+            }).ToList();
+
+
+
+            return PartialView("_UprawnieniaZasobuFirmy", uprawnienieWidokLista);
+
+        }
+
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-
-
-namespace RejestrUprawnien.Models
+﻿namespace RejestrUprawnien.Models
 {
     public class WidokModel
     {
@@ -17,8 +10,4 @@ namespace RejestrUprawnien.Models
         public string ZasobNazwa { get; set; }
         public int ZasobID { get; set; }
     }
-
-
-
-
 }

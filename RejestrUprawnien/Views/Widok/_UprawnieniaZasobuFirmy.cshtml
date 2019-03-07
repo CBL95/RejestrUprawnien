@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Zasoby Firm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@foreach (var item in Model)
+{
+    <h6>@item.UprawnienieNazwa</h6>
+    @*@Html.Action("_PartZasobyFirmy", "Widok", new { id = item.FirmaID })*@
+}
+
+

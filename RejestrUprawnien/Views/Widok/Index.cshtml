@@ -1,14 +1,19 @@
 ﻿@Styles.Render("~/Content/Site.css")
 @model IEnumerable<RejestrUprawnien.Models.WidokModel>
+
 @{
     ViewBag.Title = "Widok";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<h3 class="alert-success">Lista Pracowników:</h3>
-    @foreach (var item in Model)
-    {
-        <br />
-            <td>@item.PracownikNazwa</td>
-    }*@
+@*<h3 class="alert-success">Lista Pracowników:</h3>*@
 
-@Html.Action("_PartFirm", "Widok")
+
+
+@foreach (var item in Model)
+{
+    <h1>@item.FirmaNazwa</h1>
+    @Html.Action("_PartPracFirm", "Widok", new { id = item.FirmaID })
+
+}
+
+
