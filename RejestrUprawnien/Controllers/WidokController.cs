@@ -101,7 +101,7 @@ namespace RejestrUprawnien
 
         }
 
-        public ActionResult _PartZasFirm()
+        public ActionResult IndexZasoby()
         {
             RejestrEntities db = new RejestrEntities();
             List<Firma> listafirm = db.Firmas.ToList();
@@ -113,7 +113,7 @@ namespace RejestrUprawnien
 
             }).ToList();
 
-            return PartialView("_PartZasFirm", firmaWidokLista);
+            return View("IndexZasoby", firmaWidokLista);
         }
 
         public ActionResult _PartZasPrac(int id, string nazwa)

@@ -1,12 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "Zasoby Firm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
+<input type="button" class="myButton3" value="+ Dodaj zasób" onclick="location.href='@Url.Action("Create", "Pracownik")'" />
+
+
+
 @foreach (var item in Model)
 {
-    <h4>@item.ZasobNazwa</h4>
+    <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@item.ZasobNazwa</h4>
     @Html.Action("_UprawnieniaZasobuFirmy", "Widok", new { id = item.ZasobID })
 }
 
-
+@*<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Pracownik")'" />*@

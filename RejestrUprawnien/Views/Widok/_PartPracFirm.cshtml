@@ -1,11 +1,7 @@
-﻿
-@foreach (var item in Model)
+﻿@foreach (var item in Model)
 {
-
     <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@item.PracownikNazwa</h4>
-    <div id="content">
-        @Html.Action("_PartPracFirmZas", "Widok", new { id = item.PracownikID })
-    </div>
+    @Html.Action("_PartPracFirmZas", "Widok", new { id = item.PracownikID })
 }
 
  

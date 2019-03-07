@@ -1,13 +1,10 @@
-﻿
+﻿@Styles.Render("~/Content/Site.css")
 @{
     ViewBag.Title = "Zasoby Firm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @foreach (var item in Model)
 {
     <h1>@item.FirmaNazwa</h1>
+    <hr />
     @Html.Action("_ZasobyFirmy", "Widok", new { id = item.FirmaID })
-
 }
-
-
