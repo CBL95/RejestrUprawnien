@@ -21,19 +21,7 @@ namespace RejestrUprawnien.Controllers
         }
 
         // GET: Firma/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Firma firma = db.Firmas.Find(id);
-            if (firma == null)
-            {
-                return HttpNotFound();
-            }
-            return View(firma);
-        }
+       
 
         // GET: Firma/Create
         public ActionResult Create()

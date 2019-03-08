@@ -175,10 +175,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\aaaController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FirmaController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Poziom_uprawnienController.cs" />
     <Compile Include="Controllers\PracownikController.cs" />
@@ -376,9 +374,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -401,7 +396,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Firma\Create.cshtml" />
     <Content Include="Views\Firma\Delete.cshtml" />
-    <Content Include="Views\Firma\Details.cshtml" />
     <Content Include="Views\Firma\Edit.cshtml" />
     <Content Include="Views\Firma\Index.cshtml" />
     <Content Include="Views\Zasob\Create.cshtml" />

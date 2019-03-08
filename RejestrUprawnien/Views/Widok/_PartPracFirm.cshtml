@@ -1,7 +1,11 @@
-﻿@foreach (var item in Model)
-{
-    <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@item.PracownikNazwa</h4>
+﻿@{ 
+    int i = 1;
+
+    foreach (var item in Model)
+    {
+    <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@i. @item.PracownikNazwa</h4>
     @Html.Action("_PartPracFirmZas", "Widok", new { id = item.PracownikID })
+        i++;
+    }
 }
 
- 
