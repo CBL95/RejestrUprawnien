@@ -1,14 +1,13 @@
 ﻿<text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
-<input type="button" class="myButton3" value="+ Dodaj zasób" onclick="location.href='@Url.Action("Create", "Zasob")'" />
-<input type="button" class="myButton3" value="+ Dodaj Uprawnienie" onclick="location.href='@Url.Action("Create", "Poziom_Uprawnien")'" />
+@*<input type="button" class="myButton3" value="+ Dodaj zasób" onclick="location.href='@Url.Action("Create", "Zasob", new { nazwaTest = ViewBag.nazwaTest })'" />
+<input type="button" class="myButton3" value="+ Dodaj Uprawnienie" onclick="location.href='@Url.Action("Create", "Poziom_Uprawnien")'" />*@
 
-
-
+@*@ViewBag.nazwaTest*@
 
 @foreach (var item in Model)
 {
     <h4><text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>@item.ZasobNazwa</h4>
-    @Html.Action("_UprawnieniaZasobuFirmy", "Widok", new { id = item.ZasobID })
+    @Html.Action("_KonkretnyZasob", "Widok", new { id = item.ZasobID })
 }
 
 @*<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Pracownik")'" />*@

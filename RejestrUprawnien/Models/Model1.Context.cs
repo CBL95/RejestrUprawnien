@@ -34,6 +34,7 @@ namespace RejestrUprawnien.Models
         public virtual DbSet<Poziom_uprawnien> Poziom_uprawnien { get; set; }
         public virtual DbSet<Pracownik> Pracowniks { get; set; }
         public virtual DbSet<Zasob> Zasobs { get; set; }
+        public virtual DbSet<Nazwa_zasobu> Nazwa_zasobu { get; set; }
         public virtual DbSet<Uprawnienie> Uprawnienies { get; set; }
     }
 }

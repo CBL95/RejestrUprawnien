@@ -12,6 +12,7 @@ namespace RejestrUprawnien
 {
     public class WidokController : Controller
     {
+        //Drzewa Firm [obecny]
         public ActionResult Index()
         {
 
@@ -32,24 +33,11 @@ namespace RejestrUprawnien
             return View(firmaWidokLista);
         }
 
-        public ActionResult _PartFirm()
-        {
-            RejestrEntities db = new RejestrEntities();
-         
-            List<Firma> listafirm = db.Firmas.ToList();
-            WidokModel widok = new WidokModel();
+        //-------------------------------------------//
+        //------- Drzewo Kto --> Zasób --------------//
+        //-------------------------------------------//
 
-
-            List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
-            {
-                FirmaID = x.id,
-                FirmaNazwa = x.nazwa
-
-            }).ToList();
-
-            return PartialView("_PartFirm",firmaWidokLista);
-        }
-
+        //Drzewo Firma > Pracownik [obecny] 
         public ActionResult _PartPracFirm(int id)
         {
 
@@ -75,73 +63,63 @@ namespace RejestrUprawnien
 
         }
 
-        public ActionResult _PartPracFirmZas(int id, string nazwa)
+        //Drzewo Firma > Pracownik > Kategoria Zasobu[obecny]
+        public ActionResult _PartPracFirmZas(int id)
         {
-
-            ViewBag.nazwa = nazwa;
-
             RejestrEntities db = new RejestrEntities();
 
             var listaZasobow = (from t in db.Uprawnienies
                                     where t.id_pracownik.Equals(id)
                                     select t).ToList();
 
-
-
             WidokModel widok = new WidokModel();
 
             List<WidokModel> zasobWidokLista = listaZasobow.Select(x => new WidokModel
             {
-                UprawnienieNazwa = x.Zasob.nazwa+ " (" + x.Poziom_uprawnien.nazwa +")"
+                UprawnienieNazwa = x.Zasob.nazwa,
+                ZasobID = x.Zasob.id
             }).ToList();
-
-
 
             return PartialView("_PartPracFirmZas", zasobWidokLista);
-
         }
 
-        public ActionResult IndexZasoby()
-        {
-            RejestrEntities db = new RejestrEntities();
-            List<Firma> listafirm = db.Firmas.ToList();
-            WidokModel widok = new WidokModel();
-            List<WidokModel> firmaWidokLista = listafirm.Select(x => new WidokModel
-            {
-                FirmaID = x.id,
-                FirmaNazwa = x.nazwa
-
-            }).ToList();
-
-            return View("IndexZasoby", firmaWidokLista);
-        }
-
-        public ActionResult _PartZasPrac(int id, string nazwa)
+        //Drzewo Firma > Pracownik > Kategoria Zasobu > Nazwa Zasobu + (Poziom)[obecny]
+        public ActionResult _FirmaPracZasKonkret(int id, string nazwa)
         {
 
             ViewBag.nazwa = nazwa;
 
             RejestrEntities db = new RejestrEntities();
 
-            var listaUpPrac = (from t in db.Uprawnienies
-                                    where t.id_zasob.Equals(id)
-                                    select t).ToList();
+            var listaPracownikDoZasobu = (from t in db.Uprawnienies
+                                          where t.id_zasob.Equals(id)
+                                          select t).ToList();
+
+
 
             WidokModel widok = new WidokModel();
 
-            List<WidokModel> zasobWidokLista = listaUpPrac.Select(x => new WidokModel
+            List<WidokModel> zasobWidokLista = listaPracownikDoZasobu.Select(x => new WidokModel
             {
-                PracownikNazwa = x.Pracownik.nazwisko + " " + x.Pracownik.imie + "(" + x.Poziom_uprawnien.nazwa + ")"
-
+                UprawnienieNazwa = x.Nazwa_zasobu.nazwa + " " + "(" + x.Poziom_uprawnien.nazwa + ")"
             }).ToList();
 
 
 
-            return PartialView("_PartZasPrac", zasobWidokLista);
+            return PartialView("_FirmaPracZasKonkret", zasobWidokLista);
 
         }
 
-        public ActionResult _ZasobyFirmy(int id)
+
+
+
+
+        //-------------------------------------------//
+        //------- Drzewo Zasób --> Kto ------------- //
+        //-------------------------------------------//    
+
+        //Drzewo Firma > Zasób[obecny]
+        public ActionResult _ZasobyFirmy(int id, string nazwa)
         {
             
             RejestrEntities db = new RejestrEntities();
@@ -150,12 +128,15 @@ namespace RejestrUprawnien
                                where t.id_firma.Equals(id)
                                select t).ToList();
 
+
+            ViewBag.nazwaTest = nazwa;
             WidokModel widok = new WidokModel();
 
             List<WidokModel> zasobWidokLista = listaZasobowFirmy.Select(x => new WidokModel
             {
                 ZasobNazwa = x.nazwa,
-                ZasobID = x.id
+                ZasobID = x.id,
+                
 
             }).ToList();
 
@@ -165,28 +146,57 @@ namespace RejestrUprawnien
 
         }
 
-        public ActionResult _UprawnieniaZasobuFirmy(int id)
+        //Drzewo Firma > Zasób > Konkretny[obecny]
+        public ActionResult _KonkretnyZasob(int id)
         {
 
             RejestrEntities db = new RejestrEntities();
 
-            var listaUprawnienFirmy = (from t in db.Poziom_uprawnien
-                                     where t.id_zasob.Equals(id)
-                                     select t).ToList();
+            var listaKonkretnychZasobow = (from t in db.Nazwa_zasobu
+                                       where t.id_zasob.Equals(id)
+                                       select t).ToList();
 
             WidokModel widok = new WidokModel();
 
-            List<WidokModel> uprawnienieWidokLista = listaUprawnienFirmy.Select(x => new WidokModel
+            List<WidokModel> uprawnienieWidokLista = listaKonkretnychZasobow.Select(x => new WidokModel
             {
-                UprawnienieNazwa = x.nazwa
+                NazwaZasobNazwa = x.nazwa,
+                NazwaZasobID = x.id
 
             }).ToList();
 
 
 
-            return PartialView("_UprawnieniaZasobuFirmy", uprawnienieWidokLista);
+            return PartialView("_KonkretnyZasob", uprawnienieWidokLista);
 
         }
+
+        //Drzewo Firma > Zasób > Konkretny > Kto(poziom)[obecny]
+        public ActionResult _PracownikDoZasobu(int id)
+        {
+
+            RejestrEntities db = new RejestrEntities();
+
+            var listaPracownikDoZasobu = (from t in db.Uprawnienies
+                                           where t.id_nazwa_zasobu.Equals(id)
+                                           select t).ToList();
+
+            WidokModel widok = new WidokModel();
+
+            List<WidokModel> Lista = listaPracownikDoZasobu.Select(x => new WidokModel
+            {
+                PracownikNazwa = x.Pracownik.nazwisko + " " + x.Pracownik.imie + "(" + x.Poziom_uprawnien.nazwa + ")"
+
+
+            }).ToList();
+
+
+
+            return PartialView("_PracownikDoZasobu", Lista);
+
+        }
+
+       
 
     }
 }

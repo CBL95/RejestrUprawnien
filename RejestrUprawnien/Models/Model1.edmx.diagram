@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48a4d19a07d3407b887d5336786acff4" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="48a4d19a07d3407b887d5336786acff4" Name="Diagram1" ZoomLevel="112">
         <EntityTypeShape EntityType="RejestrModel.C__MigrationHistory" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RejestrModel.AspNetRole" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="RejestrModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="8" IsExpanded="true" />
@@ -13,14 +13,17 @@
         <EntityTypeShape EntityType="RejestrModel.Firma" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RejestrModel.Poziom_uprawnien" Width="1.5" PointX="5.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RejestrModel.Pracownik" Width="1.5" PointX="3.5" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RejestrModel.Zasob" Width="1.5" PointX="2.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RejestrModel.Zasob" Width="1.5" PointX="2.875" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="RejestrModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="RejestrModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="RejestrModel.Pracownik_fk0" ManuallyRouted="false" />
         <AssociationConnector Association="RejestrModel.Zasob_fk0" ManuallyRouted="false" />
         <AssociationConnector Association="RejestrModel.Poziom_uprawnien_fk0" ManuallyRouted="false" />
         <AssociationConnector Association="RejestrModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="RejestrModel.Uprawnienie" Width="1.5" PointX="5.5" PointY="0.875" />
+        <EntityTypeShape EntityType="RejestrModel.Nazwa_zasobu" Width="1.5" PointX="0.5" PointY="6.375" />
+        <AssociationConnector Association="RejestrModel.Nazwa_zasobu_fk0" />
+        <EntityTypeShape EntityType="RejestrModel.Uprawnienie" Width="1.5" PointX="7.75" PointY="3.125" />
+        <AssociationConnector Association="RejestrModel.Nazwa_zasobu_fk1" />
         <AssociationConnector Association="RejestrModel.Uprawnienie_fk2" />
         <AssociationConnector Association="RejestrModel.Uprawnienie_fk0" />
         <AssociationConnector Association="RejestrModel.Uprawnienie_fk1" />

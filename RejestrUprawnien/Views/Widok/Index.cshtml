@@ -4,13 +4,24 @@
 @{
     ViewBag.Title = "Widok";
 }
+<div class="row">
+    <div class="col-sm-4">
+        @foreach (var item in Model)
+        {
+            <h1>@item.FirmaNazwa</h1>
+            <hr />
+            @Html.Action("_PartPracFirm", "Widok", new { id = item.FirmaID })
+        }
+    </div>
+    <div class="col-sm-4">
+        @foreach (var item in Model)
+        {
+            <h1>@item.FirmaNazwa</h1>
+            <hr />
+            @Html.Action("_ZasobyFirmy", "Widok", new { id = item.FirmaID, nazwa = item.FirmaNazwa })
+        }
+    </div>
 
-@foreach (var item in Model)
-{
-    <h1>@item.FirmaNazwa</h1>
-    <hr />
-    @Html.Action("_PartPracFirm", "Widok", new { id = item.FirmaID })
-}
 
-
+</div>
 @*<input type="button" class="myButton" value="Dodaj nową pozycję" onclick="location.href='@Url.Action("Create", "Pracownik")'" />*@

@@ -1,7 +1,8 @@
 ﻿@foreach (var item in Model)
 {
     <text>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</text>
-    @item.UprawnienieNazwa<Br />
+    @item.NazwaZasobNazwa<Br />
+    @Html.Action("_PracownikDoZasobu", "Widok", new { id = item.NazwaZasobID })
 }
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 @*<input type="button" class="myButton2" value="+" onclick="location.href='@Url.Action("Create", "Poziom_Uprawnien")'" />*@

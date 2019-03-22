@@ -12,25 +12,19 @@ namespace RejestrUprawnien.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Zasob
+    public partial class Nazwa_zasobu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Zasob()
+        public Nazwa_zasobu()
         {
-            this.Poziom_uprawnien = new HashSet<Poziom_uprawnien>();
-            this.Nazwa_zasobu = new HashSet<Nazwa_zasobu>();
             this.Uprawnienies = new HashSet<Uprawnienie>();
         }
     
         public int id { get; set; }
-        public int id_firma { get; set; }
         public string nazwa { get; set; }
+        public int id_zasob { get; set; }
     
-        public virtual Firma Firma { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Poziom_uprawnien> Poziom_uprawnien { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Nazwa_zasobu> Nazwa_zasobu { get; set; }
+        public virtual Zasob Zasob { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uprawnienie> Uprawnienies { get; set; }
     }

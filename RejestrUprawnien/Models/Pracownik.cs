@@ -23,8 +23,6 @@ namespace RejestrUprawnien.Models
         public int id { get; set; }
         public string imie { get; set; }
         public string nazwisko { get; set; }
-        
-        
         public int id_firma { get; set; }
     
         public virtual Firma Firma { get; set; }

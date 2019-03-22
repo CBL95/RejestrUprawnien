@@ -10,114 +10,112 @@ using RejestrUprawnien.Models;
 
 namespace RejestrUprawnien.Controllers
 {
-    public class ZasobController : Controller
+    public class Nazwa_zasobuController : Controller
     {
         private RejestrEntities db = new RejestrEntities();
 
-        // GET: Zasob
+        // GET: Nazwa_zasobu
         public ActionResult Index()
         {
-            var zasobs = db.Zasobs.Include(z => z.Firma);
-            return View(zasobs.ToList());
+            var nazwa_zasobu = db.Nazwa_zasobu.Include(n => n.Zasob);
+            return View(nazwa_zasobu.ToList());
         }
 
-        // GET: Zasob/Details/5
+        // GET: Nazwa_zasobu/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zasob zasob = db.Zasobs.Find(id);
-            if (zasob == null)
+            Nazwa_zasobu nazwa_zasobu = db.Nazwa_zasobu.Find(id);
+            if (nazwa_zasobu == null)
             {
                 return HttpNotFound();
             }
-            return View(zasob);
+            return View(nazwa_zasobu);
         }
 
-        // GET: Zasob/Create
-        public ActionResult Create(string nazwaTest)
+        // GET: Nazwa_zasobu/Create
+        public ActionResult Create()
         {
-            //ViewBag.id_firma = nazwaTest;
-
-            ViewBag.id_firma = new SelectList(db.Firmas, "id", "nazwa");
+            ViewBag.id_zasob = new SelectList(db.Zasobs, "id", "nazwa");
             return View();
         }
 
-        // POST: Zasob/Create
+        // POST: Nazwa_zasobu/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,id_firma,nazwa")] Zasob zasob)
+        public ActionResult Create([Bind(Include = "id,nazwa,id_zasob")] Nazwa_zasobu nazwa_zasobu)
         {
             if (ModelState.IsValid)
             {
-                db.Zasobs.Add(zasob);
+                db.Nazwa_zasobu.Add(nazwa_zasobu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_firma = new SelectList(db.Firmas, "id", "nazwa", zasob.id_firma);
-            return View(zasob);
+            ViewBag.id_zasob = new SelectList(db.Zasobs, "id", "nazwa", nazwa_zasobu.id_zasob);
+            return View(nazwa_zasobu);
         }
 
-        // GET: Zasob/Edit/5
+        // GET: Nazwa_zasobu/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zasob zasob = db.Zasobs.Find(id);
-            if (zasob == null)
+            Nazwa_zasobu nazwa_zasobu = db.Nazwa_zasobu.Find(id);
+            if (nazwa_zasobu == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_firma = new SelectList(db.Firmas, "id", "nazwa", zasob.id_firma);
-            return View(zasob);
+            ViewBag.id_zasob = new SelectList(db.Zasobs, "id", "nazwa", nazwa_zasobu.id_zasob);
+            return View(nazwa_zasobu);
         }
 
-        // POST: Zasob/Edit/5
+        // POST: Nazwa_zasobu/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,id_firma,nazwa")] Zasob zasob)
+        public ActionResult Edit([Bind(Include = "id,nazwa,id_zasob")] Nazwa_zasobu nazwa_zasobu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(zasob).State = EntityState.Modified;
+                db.Entry(nazwa_zasobu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_firma = new SelectList(db.Firmas, "id", "nazwa", zasob.id_firma);
-            return View(zasob);
+            ViewBag.id_zasob = new SelectList(db.Zasobs, "id", "nazwa", nazwa_zasobu.id_zasob);
+            return View(nazwa_zasobu);
         }
 
-        // GET: Zasob/Delete/5
+        // GET: Nazwa_zasobu/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zasob zasob = db.Zasobs.Find(id);
-            if (zasob == null)
+            Nazwa_zasobu nazwa_zasobu = db.Nazwa_zasobu.Find(id);
+            if (nazwa_zasobu == null)
             {
                 return HttpNotFound();
             }
-            return View(zasob);
+            return View(nazwa_zasobu);
         }
 
-        // POST: Zasob/Delete/5
+        // POST: Nazwa_zasobu/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Zasob zasob = db.Zasobs.Find(id);
-            db.Zasobs.Remove(zasob);
+            Nazwa_zasobu nazwa_zasobu = db.Nazwa_zasobu.Find(id);
+            db.Nazwa_zasobu.Remove(nazwa_zasobu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FirmaController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Nazwa_zasobuController.cs" />
     <Compile Include="Controllers\Poziom_uprawnienController.cs" />
     <Compile Include="Controllers\PracownikController.cs" />
     <Compile Include="Controllers\UprawnienieController.cs" />
@@ -221,6 +222,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Nazwa_zasobu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Poziom_uprawnien.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -422,10 +426,16 @@
     <Content Include="Views\Widok\_PartFirm.cshtml" />
     <Content Include="Views\Widok\_PartPracFirm.cshtml" />
     <Content Include="Views\Widok\_PartPracFirmZas.cshtml" />
-    <Content Include="Views\Widok\IndexZasoby.cshtml" />
     <Content Include="Views\Widok\_PartZasPrac.cshtml" />
     <Content Include="Views\Widok\_ZasobyFirmy.cshtml" />
-    <Content Include="Views\Widok\_UprawnieniaZasobuFirmy.cshtml" />
+    <Content Include="Views\Widok\_KonkretnyZasob.cshtml" />
+    <Content Include="Views\Nazwa_zasobu\Create.cshtml" />
+    <Content Include="Views\Nazwa_zasobu\Delete.cshtml" />
+    <Content Include="Views\Nazwa_zasobu\Details.cshtml" />
+    <Content Include="Views\Nazwa_zasobu\Edit.cshtml" />
+    <Content Include="Views\Nazwa_zasobu\Index.cshtml" />
+    <Content Include="Views\Widok\_PracownikDoZasobu.cshtml" />
+    <Content Include="Views\Widok\_FirmaPracZasKonkret.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,7 +17,6 @@ namespace RejestrUprawnien.Models
         public int id { get; set; }
         public int id_pracownik { get; set; }
         public int id_zasob { get; set; }
-        public string opis { get; set; }
         public Nullable<int> id_poziom { get; set; }
         public Nullable<System.DateTime> data_utworzenia { get; set; }
         public Nullable<System.DateTime> data_zatwierdzenia { get; set; }
@@ -25,7 +24,9 @@ namespace RejestrUprawnien.Models
         public string zatwierdzil { get; set; }
         public string utworzyl { get; set; }
         public string usunal { get; set; }
+        public int id_nazwa_zasobu { get; set; }
     
+        public virtual Nazwa_zasobu Nazwa_zasobu { get; set; }
         public virtual Poziom_uprawnien Poziom_uprawnien { get; set; }
         public virtual Pracownik Pracownik { get; set; }
         public virtual Zasob Zasob { get; set; }

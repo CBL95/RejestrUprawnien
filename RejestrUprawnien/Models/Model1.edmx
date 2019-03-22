@@ -73,6 +73,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Nazwa_zasobu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_zasob" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Poziom_uprawnien">
           <Key>
             <PropertyRef Name="id" />
@@ -97,7 +105,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pracownik" Type="int" Nullable="false" />
           <Property Name="id_zasob" Type="int" Nullable="false" />
-          <Property Name="opis" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id_poziom" Type="int" />
           <Property Name="data_utworzenia" Type="datetime" />
           <Property Name="data_zatwierdzenia" Type="datetime" />
@@ -105,6 +112,7 @@
           <Property Name="zatwierdzil" Type="varchar" MaxLength="150" />
           <Property Name="utworzyl" Type="varchar" MaxLength="150" />
           <Property Name="usunal" Type="varchar" MaxLength="150" />
+          <Property Name="id_nazwa_zasobu" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Zasob">
           <Key>
@@ -167,6 +175,30 @@
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Nazwa_zasobu_fk0">
+          <End Role="Zasob" Type="Self.Zasob" Multiplicity="1" />
+          <End Role="Nazwa_zasobu" Type="Self.Nazwa_zasobu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nazwa_zasobu">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Nazwa_zasobu_fk1">
+          <End Role="Nazwa_zasobu" Type="Self.Nazwa_zasobu" Multiplicity="1" />
+          <End Role="Uprawnienie" Type="Self.Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nazwa_zasobu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_nazwa_zasobu" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -250,6 +282,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nazwa_zasobu" EntityType="Self.Nazwa_zasobu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Poziom_uprawnien" EntityType="Self.Poziom_uprawnien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uprawnienie" EntityType="Self.Uprawnienie" Schema="dbo" store:Type="Tables" />
@@ -269,6 +302,14 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Nazwa_zasobu_fk0" Association="Self.Nazwa_zasobu_fk0">
+            <End Role="Zasob" EntitySet="Zasob" />
+            <End Role="Nazwa_zasobu" EntitySet="Nazwa_zasobu" />
+          </AssociationSet>
+          <AssociationSet Name="Nazwa_zasobu_fk1" Association="Self.Nazwa_zasobu_fk1">
+            <End Role="Nazwa_zasobu" EntitySet="Nazwa_zasobu" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienie" />
           </AssociationSet>
           <AssociationSet Name="Poziom_uprawnien_fk0" Association="Self.Poziom_uprawnien_fk0">
             <End Role="Zasob" EntitySet="Zasob" />
@@ -397,6 +438,7 @@
           <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Firma" Relationship="Self.Zasob_fk0" FromRole="Zasob" ToRole="Firma" />
           <NavigationProperty Name="Poziom_uprawnien" Relationship="Self.Poziom_uprawnien_fk0" FromRole="Zasob" ToRole="Poziom_uprawnien" />
+          <NavigationProperty Name="Nazwa_zasobu" Relationship="RejestrModel.Nazwa_zasobu_fk0" FromRole="Zasob" ToRole="Nazwa_zasobu" />
           <NavigationProperty Name="Uprawnienies" Relationship="RejestrModel.Uprawnienie_fk1" FromRole="Zasob" ToRole="Uprawnienie" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -501,7 +543,16 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Nazwa_zasobu" EntityType="RejestrModel.Nazwa_zasobu" />
+          <AssociationSet Name="Nazwa_zasobu_fk0" Association="RejestrModel.Nazwa_zasobu_fk0">
+            <End Role="Zasob" EntitySet="Zasobs" />
+            <End Role="Nazwa_zasobu" EntitySet="Nazwa_zasobu" />
+          </AssociationSet>
           <EntitySet Name="Uprawnienies" EntityType="RejestrModel.Uprawnienie" />
+          <AssociationSet Name="Nazwa_zasobu_fk1" Association="RejestrModel.Nazwa_zasobu_fk1">
+            <End Role="Nazwa_zasobu" EntitySet="Nazwa_zasobu" />
+            <End Role="Uprawnienie" EntitySet="Uprawnienies" />
+          </AssociationSet>
           <AssociationSet Name="Uprawnienie_fk2" Association="RejestrModel.Uprawnienie_fk2">
             <End Role="Poziom_uprawnien" EntitySet="Poziom_uprawnien" />
             <End Role="Uprawnienie" EntitySet="Uprawnienies" />
@@ -515,6 +566,28 @@
             <End Role="Uprawnienie" EntitySet="Uprawnienies" />
           </AssociationSet>
           </EntityContainer>
+        <EntityType Name="Nazwa_zasobu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_zasob" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zasob" Relationship="RejestrModel.Nazwa_zasobu_fk0" FromRole="Nazwa_zasobu" ToRole="Zasob" />
+          <NavigationProperty Name="Uprawnienies" Relationship="RejestrModel.Nazwa_zasobu_fk1" FromRole="Nazwa_zasobu" ToRole="Uprawnienie" />
+        </EntityType>
+        <Association Name="Nazwa_zasobu_fk0">
+          <End Type="RejestrModel.Zasob" Role="Zasob" Multiplicity="1" />
+          <End Type="RejestrModel.Nazwa_zasobu" Role="Nazwa_zasobu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zasob">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nazwa_zasobu">
+              <PropertyRef Name="id_zasob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Uprawnienie">
           <Key>
             <PropertyRef Name="id" />
@@ -522,7 +595,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pracownik" Type="Int32" Nullable="false" />
           <Property Name="id_zasob" Type="Int32" Nullable="false" />
-          <Property Name="opis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id_poziom" Type="Int32" />
           <Property Name="data_utworzenia" Type="DateTime" Precision="3" />
           <Property Name="data_zatwierdzenia" Type="DateTime" Precision="3" />
@@ -530,10 +602,24 @@
           <Property Name="zatwierdzil" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="utworzyl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="usunal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id_nazwa_zasobu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nazwa_zasobu" Relationship="RejestrModel.Nazwa_zasobu_fk1" FromRole="Uprawnienie" ToRole="Nazwa_zasobu" />
           <NavigationProperty Name="Poziom_uprawnien" Relationship="RejestrModel.Uprawnienie_fk2" FromRole="Uprawnienie" ToRole="Poziom_uprawnien" />
           <NavigationProperty Name="Pracownik" Relationship="RejestrModel.Uprawnienie_fk0" FromRole="Uprawnienie" ToRole="Pracownik" />
           <NavigationProperty Name="Zasob" Relationship="RejestrModel.Uprawnienie_fk1" FromRole="Uprawnienie" ToRole="Zasob" />
         </EntityType>
+        <Association Name="Nazwa_zasobu_fk1">
+          <End Type="RejestrModel.Nazwa_zasobu" Role="Nazwa_zasobu" Multiplicity="1" />
+          <End Type="RejestrModel.Uprawnienie" Role="Uprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nazwa_zasobu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Uprawnienie">
+              <PropertyRef Name="id_nazwa_zasobu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Uprawnienie_fk2">
           <End Type="RejestrModel.Poziom_uprawnien" Role="Poziom_uprawnien" Multiplicity="0..1" />
           <End Type="RejestrModel.Uprawnienie" Role="Uprawnienie" Multiplicity="*" />
@@ -675,9 +761,19 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Nazwa_zasobu">
+            <EntityTypeMapping TypeName="RejestrModel.Nazwa_zasobu">
+              <MappingFragment StoreEntitySet="Nazwa_zasobu">
+                <ScalarProperty Name="id_zasob" ColumnName="id_zasob" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Uprawnienies">
             <EntityTypeMapping TypeName="RejestrModel.Uprawnienie">
               <MappingFragment StoreEntitySet="Uprawnienie">
+                <ScalarProperty Name="id_nazwa_zasobu" ColumnName="id_nazwa_zasobu" />
                 <ScalarProperty Name="usunal" ColumnName="usunal" />
                 <ScalarProperty Name="utworzyl" ColumnName="utworzyl" />
                 <ScalarProperty Name="zatwierdzil" ColumnName="zatwierdzil" />
@@ -685,7 +781,6 @@
                 <ScalarProperty Name="data_zatwierdzenia" ColumnName="data_zatwierdzenia" />
                 <ScalarProperty Name="data_utworzenia" ColumnName="data_utworzenia" />
                 <ScalarProperty Name="id_poziom" ColumnName="id_poziom" />
-                <ScalarProperty Name="opis" ColumnName="opis" />
                 <ScalarProperty Name="id_zasob" ColumnName="id_zasob" />
                 <ScalarProperty Name="id_pracownik" ColumnName="id_pracownik" />
                 <ScalarProperty Name="id" ColumnName="id" />
